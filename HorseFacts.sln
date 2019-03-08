@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8FC011C4-37CC-4925-B3A4-2E63F6646720}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorseFacts.Web.E2ETests", "HorseFacts.Web.E2ETests\HorseFacts.Web.E2ETests.csproj", "{4346F552-A3E0-475B-9283-09407BF1849D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2FF9582C-6397-475B-ABD0-E6205F4BE202}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorseFacts.Web", "HorseFacts.Web\HorseFacts.Web.csproj", "{D649D81D-B0E5-4199-868E-FC7B525F21AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4346F552-A3E0-475B-9283-09407BF1849D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4346F552-A3E0-475B-9283-09407BF1849D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4346F552-A3E0-475B-9283-09407BF1849D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4346F552-A3E0-475B-9283-09407BF1849D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D649D81D-B0E5-4199-868E-FC7B525F21AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D649D81D-B0E5-4199-868E-FC7B525F21AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D649D81D-B0E5-4199-868E-FC7B525F21AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D649D81D-B0E5-4199-868E-FC7B525F21AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4346F552-A3E0-475B-9283-09407BF1849D} = {8FC011C4-37CC-4925-B3A4-2E63F6646720}
+		{D649D81D-B0E5-4199-868E-FC7B525F21AD} = {2FF9582C-6397-475B-ABD0-E6205F4BE202}
+	EndGlobalSection
+EndGlobal
