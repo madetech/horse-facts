@@ -1,0 +1,9 @@
+/Users/david/Projects/horse-facts/HorseFacts.Core/bin/Debug/netcoreapp2.2/HorseFacts.Core.deps.json
+/Users/david/Projects/horse-facts/HorseFacts.Core/bin/Debug/netcoreapp2.2/HorseFacts.Core.dll
+/Users/david/Projects/horse-facts/HorseFacts.Core/bin/Debug/netcoreapp2.2/HorseFacts.Core.pdb
+/Users/david/Projects/horse-facts/HorseFacts.Core/obj/Debug/netcoreapp2.2/HorseFacts.Core.csprojAssemblyReference.cache
+/Users/david/Projects/horse-facts/HorseFacts.Core/obj/Debug/netcoreapp2.2/HorseFacts.Core.csproj.CoreCompileInputs.cache
+/Users/david/Projects/horse-facts/HorseFacts.Core/obj/Debug/netcoreapp2.2/HorseFacts.Core.AssemblyInfoInputs.cache
+/Users/david/Projects/horse-facts/HorseFacts.Core/obj/Debug/netcoreapp2.2/HorseFacts.Core.AssemblyInfo.cs
+/Users/david/Projects/horse-facts/HorseFacts.Core/obj/Debug/netcoreapp2.2/HorseFacts.Core.dll
+/Users/david/Projects/horse-facts/HorseFacts.Core/obj/Debug/netcoreapp2.2/HorseFacts.Core.pdb

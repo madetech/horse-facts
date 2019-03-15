@@ -1,0 +1,17 @@
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/bin/Debug/netcoreapp2.2/NUnit3.TestAdapter.dll
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/bin/Debug/netcoreapp2.2/NUnit3.TestAdapter.pdb
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/bin/Debug/netcoreapp2.2/nunit.engine.netstandard.dll
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/bin/Debug/netcoreapp2.2/HorseFacts.Core.Tests.deps.json
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/bin/Debug/netcoreapp2.2/HorseFacts.Core.Tests.runtimeconfig.json
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/bin/Debug/netcoreapp2.2/HorseFacts.Core.Tests.runtimeconfig.dev.json
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/bin/Debug/netcoreapp2.2/HorseFacts.Core.Tests.dll
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/bin/Debug/netcoreapp2.2/HorseFacts.Core.Tests.pdb
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/bin/Debug/netcoreapp2.2/HorseFacts.Core.dll
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/bin/Debug/netcoreapp2.2/HorseFacts.Core.pdb
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/obj/Debug/netcoreapp2.2/HorseFacts.Core.Tests.csprojAssemblyReference.cache
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/obj/Debug/netcoreapp2.2/HorseFacts.Core.Tests.csproj.CoreCompileInputs.cache
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/obj/Debug/netcoreapp2.2/HorseFacts.Core.Tests.AssemblyInfoInputs.cache
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/obj/Debug/netcoreapp2.2/HorseFacts.Core.Tests.AssemblyInfo.cs
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/obj/Debug/netcoreapp2.2/HorseFacts.Core.Tests.csproj.CopyComplete
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/obj/Debug/netcoreapp2.2/HorseFacts.Core.Tests.dll
+/Users/david/Projects/horse-facts/HorseFacts.Core.Tests/obj/Debug/netcoreapp2.2/HorseFacts.Core.Tests.pdb
