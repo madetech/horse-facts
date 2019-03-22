@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.WebSockets;
 using System.Text.RegularExpressions;
 using HorseFacts.Core.Responses;
+using HorseFacts.Core.GatewayInterfaces;
 
 namespace HorseFacts.Core.UseCases
 {
@@ -14,20 +15,20 @@ namespace HorseFacts.Core.UseCases
         {
             _animalFactGateway = animalFactGateway;
         }
-        
+
         public GetRandomQuestionableHorseFactResponse Execute()
         {
             var animals = new[] {"cat", "dog", "zebra", "giraffe", "lion"};
 
             var fact = _animalFactGateway.GetAnimalFact();
 
-            var horseFact = animals.Aggregate(fact, (current, animal) =>
+            var horseFact = animals.Aggregate(fact.Fact, (current, animal) =>
                 Regex.Replace(current, @"\b" + animal + @"(s?)\b", "horse$1"));
 
             return new GetRandomQuestionableHorseFactResponse
             {
                 HorseFact = horseFact
-            }; 
+            };
         }
     }
 }
