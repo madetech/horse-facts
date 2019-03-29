@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net.WebSockets;
 using System.Text.RegularExpressions;
+using HorseFacts.Core.Responses;
 
 namespace HorseFacts.Core.UseCases
 {
@@ -14,7 +15,7 @@ namespace HorseFacts.Core.UseCases
             _animalFactGateway = animalFactGateway;
         }
         
-        public Dictionary<string, string> Execute()
+        public GetRandomQuestionableHorseFactResponse Execute()
         {
             var animals = new[] {"cat", "dog", "zebra", "giraffe", "lion"};
 
@@ -23,10 +24,10 @@ namespace HorseFacts.Core.UseCases
             var horseFact = animals.Aggregate(fact, (current, animal) =>
                 Regex.Replace(current, @"\b" + animal + @"(s?)\b", "horse$1"));
 
-            return new Dictionary<string, string>
+            return new GetRandomQuestionableHorseFactResponse
             {
-                {"horseFact", horseFact}
-            };
+                HorseFact = horseFact
+            }; 
         }
     }
 }
