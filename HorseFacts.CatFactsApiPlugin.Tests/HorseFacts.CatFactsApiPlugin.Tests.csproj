@@ -5,12 +5,12 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.6.0" />
-    <PackageReference Include="Moq" Version="4.10.1" />
     <PackageReference Include="nunit" Version="3.11.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="WireMock.Net" Version="1.0.8" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HorseFacts.Core\HorseFacts.Core.csproj" />
+    <ProjectReference Include="..\HorseFacts.CatFactsApiPlugin\HorseFacts.CatFactsApiPlugin.csproj" />
   </ItemGroup>
 </Project>

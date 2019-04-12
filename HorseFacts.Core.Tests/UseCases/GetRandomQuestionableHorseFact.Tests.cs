@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions;
-using HorseFacts.Core.Responses;
+using HorseFacts.Boundary.Responses;
+using HorseFacts.Core.Domain;
+using HorseFacts.Core.GatewayInterfaces;
 using HorseFacts.Core.UseCases;
 using NUnit.Framework;
 
@@ -110,10 +112,13 @@ namespace HorseFacts.Core.Tests.UseCases
             AssertHorseFactToBe("mountain horses always land on their feet", response);
         }
 
-        public string GetAnimalFact()
+        public AnimalFact GetAnimalFact()
         {
             _animalFactCalled = true;
-            return _animalFact;
+            return new AnimalFact
+            {
+                Fact = _animalFact
+            };
         }
 
         private void AssertHorseFactToBe(string expectedHorseFactText, object actualResponse)
