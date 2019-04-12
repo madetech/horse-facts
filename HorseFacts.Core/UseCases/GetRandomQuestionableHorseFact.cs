@@ -19,7 +19,17 @@ namespace HorseFacts.Core.UseCases
 
         public GetRandomQuestionableHorseFactResponse Execute()
         {
-            var animals = new[] {"cat", "dog", "zebra", "giraffe", "lion"};
+            var animals = new[]
+            {
+                "cat", "dog", "zebra", "giraffe", "lion", "tabby", "tabbie", "jaguar",
+                "squirrel", "lemur", "elephant", "gorilla", "kitten", "bird", "snake",
+                "monkey", "ape", "koala", "kangaroo", "penguin", "bear", "tiger", "goose",
+                "duck", "swan", "snail", "slug", "ant", "wasp", "bee", "hornet", "insect",
+                "spider", "scorpion", "millipede", "centipede", "owl", "hedgehog", "wolf",
+                "dragon", "rhino", "fox", "narwhal", "unicorn", "fish", "shark", "dolphin",
+                "octopus", "whale", "sloth", "cheetah", "ocelot", "tuna", "cod", "haddock",
+                "mackerel", "kipper"
+            };
 
             var fact = _animalFactGateway.GetAnimalFact();
 
