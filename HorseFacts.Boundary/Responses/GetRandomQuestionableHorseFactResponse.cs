@@ -1,4 +1,4 @@
-namespace HorseFacts.Core.Responses
+namespace HorseFacts.Boundary.Responses
 {
     public class GetRandomQuestionableHorseFactResponse
     {

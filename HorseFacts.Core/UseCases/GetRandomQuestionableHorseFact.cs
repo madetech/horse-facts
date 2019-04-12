@@ -2,12 +2,13 @@
 using System.Linq;
 using System.Net.WebSockets;
 using System.Text.RegularExpressions;
-using HorseFacts.Core.Responses;
+using HorseFacts.Boundary.Responses;
+using HorseFacts.Boundary.UseCaseInterfaces;
 using HorseFacts.Core.GatewayInterfaces;
 
 namespace HorseFacts.Core.UseCases
 {
-    public class GetRandomQuestionableHorseFact
+    public class GetRandomQuestionableHorseFact : IGetRandomQuestionableHorseFact
     {
         private readonly IAnimalFactGateway _animalFactGateway;
 

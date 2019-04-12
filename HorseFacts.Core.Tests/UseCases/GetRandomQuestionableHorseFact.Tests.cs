@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions;
-using HorseFacts.Core.Responses;
+using HorseFacts.Boundary.Responses;
 using HorseFacts.Core.Domain;
 using HorseFacts.Core.GatewayInterfaces;
 using HorseFacts.Core.UseCases;
