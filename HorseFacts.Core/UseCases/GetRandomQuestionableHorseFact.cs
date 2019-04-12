@@ -23,13 +23,22 @@ namespace HorseFacts.Core.UseCases
 
             var fact = _animalFactGateway.GetAnimalFact();
 
-            var horseFact = animals.Aggregate(fact.Fact, (current, animal) =>
-                Regex.Replace(current, @"\b" + animal + @"(s?)\b", "horse$1"));
-
             return new GetRandomQuestionableHorseFactResponse
             {
-                HorseFact = horseFact
+                HorseFact = ReplaceAnimalsWithHorsesInFact(fact.Fact, animals)
             };
+        }
+
+        private string ReplaceAnimalsWithHorsesInFact(string fact, string[] animals)
+        {
+            return animals.Aggregate(fact, (current, animal) =>
+                {
+                    current = Regex.Replace(current, @"\b" + animal + @"(s?)\b", "horse$1");
+                    current = Regex.Replace(current, @"\b" + animal.Substring(0, 1).ToUpper() + animal.Substring(1) + @"(s?)\b", "Horse$1");
+                    current = Regex.Replace(current, @"\b" + animal.ToUpper() + @"(S?)\b", "HORSE$1");
+
+                    return current;
+                });
         }
     }
 }

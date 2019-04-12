@@ -112,6 +112,19 @@ namespace HorseFacts.Core.Tests.UseCases
             AssertHorseFactToBe("mountain horses always land on their feet", response);
         }
 
+        [Test]
+        [TestCase("Cats have an average of 24 whiskers.", "Horses have an average of 24 whiskers.")]
+        [TestCase("I LOVE CATS", "I LOVE HORSES")]
+        [TestCase("Cat cat CAT!", "Horse horse HORSE!")]
+        public void WhenCalled_PreservesCapitalisationOfAnimalNames(string fact, string expectedFact)
+        {
+            _animalFact = fact;
+
+            var response = subject.Execute();
+
+            AssertHorseFactToBe(expectedFact, response);
+        }
+
         public AnimalFact GetAnimalFact()
         {
             _animalFactCalled = true;
