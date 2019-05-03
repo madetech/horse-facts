@@ -28,7 +28,7 @@ namespace HorseFacts.Core.UseCases
                 "spider", "scorpion", "millipede", "centipede", "owl", "hedgehog", "wolf",
                 "dragon", "rhino", "fox", "narwhal", "unicorn", "fish", "shark", "dolphin",
                 "octopus", "whale", "sloth", "cheetah", "ocelot", "tuna", "cod", "haddock",
-                "mackerel", "kipper"
+                "mackerel", "kipper", "leopard", "kitty", "kittie"
             };
 
             var fact = _animalFactGateway.GetAnimalFact();
