@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Net.Http;
 using FluentAssertions;
 using HorseFacts.CatFactsApiPlugin.Gateways;
 using HorseFacts.Core.Domain;
@@ -34,8 +35,9 @@ namespace Tests
         public void GetAnimalFact_ReturnsAnimalFact(string factText)
         {            
             StubCatFactsRandomEndpoint(factText);
-            
-            var catFactApi = new CatFactsApiGateway(_server.Urls.First());
+
+            var httpClient = new HttpClient() { BaseAddress = new Uri(_server.Urls.First()) };
+            var catFactApi = new CatFactsApiGateway(httpClient);
             var animalFact = catFactApi.GetAnimalFact();
             
             animalFact.Should().BeEquivalentTo(new AnimalFact

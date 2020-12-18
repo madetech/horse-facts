@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
+using HorseFacts.CatFactsApiPlugin.Gateways;
+using HorseFacts.Core.GatewayInterfaces;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using WireMock.RequestBuilders;
@@ -23,9 +25,17 @@ namespace HorseFacts.Web.E2ETests
         [SetUp]
         public void Setup()
         {
-            var webFactory = new WebApplicationFactory<Startup>();
-            _client = webFactory.CreateClient();
             _server = FluentMockServer.Start(new FluentMockServerSettings());
+            _client = new WebApplicationFactory<Startup>().WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureTestServices(services =>
+                {
+                    services.AddHttpClient<IAnimalFactGateway, CatFactsApiGateway>(client =>
+                    {
+                        client.BaseAddress = new Uri(_server.Urls.First());
+                    });
+                });
+            }).CreateClient();
         }
 
         // TODO: Make errors not involve debugging and inspecting HTML to get an awkward stack trace
@@ -33,10 +43,7 @@ namespace HorseFacts.Web.E2ETests
         [Test]
         public async Task UserCanViewAHorseFact()
         {
-            var expectedJson = JObject.FromObject(new Dictionary<string, object>
-            {
-                {"horseFact", "Horses use their whiskers to detect if they can fit through a space."}
-            });
+            var expectedJson = JToken.Parse("{\"horseFact\": \"Horses use their whiskers to detect if they can fit through a space.\"}");
 
             _server
                 .Given(Request
@@ -51,10 +58,10 @@ namespace HorseFacts.Web.E2ETests
 
             var result = await _client.GetAsync("/api/facts/random");
             var content = await result.Content.ReadAsStringAsync();
-            var json = JsonConvert.DeserializeObject(content);
+            var json = JToken.Parse(content);
 
             result.StatusCode.Should().Be(200);
-            expectedJson.Should().BeEquivalentTo(json);
+            JToken.DeepEquals(expectedJson, json).Should().BeTrue();
         }
     }
 }
