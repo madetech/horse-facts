@@ -3,22 +3,14 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HorseFacts.Boundary.Responses;
 using HorseFacts.Boundary.UseCaseInterfaces;
+using HorseFacts.Core.Extensions;
 using HorseFacts.Core.GatewayInterfaces;
 
 namespace HorseFacts.Core.UseCases
 {
     public class GetRandomQuestionableHorseFact : IUseCase<GetRandomQuestionableHorseFactResponse>
     {
-        private readonly IAnimalFactGateway _animalFactGateway;
-
-        public GetRandomQuestionableHorseFact(IAnimalFactGateway animalFactGateway)
-        {
-            _animalFactGateway = animalFactGateway;
-        }
-
-        public async Task<GetRandomQuestionableHorseFactResponse> Execute()
-        {
-            var animals = new[]
+        private static string[] _animals = new[]
             {
                 "cat", "dog", "zebra", "giraffe", "lion", "tabby", "tabbie", "jaguar",
                 "squirrel", "lemur", "elephant", "gorilla", "kitten", "bird", "snake",
@@ -30,24 +22,33 @@ namespace HorseFacts.Core.UseCases
                 "mackerel", "kipper", "leopard", "kitty", "kittie", "housecat", "escalator"
             };
 
+        private readonly IAnimalFactGateway _animalFactGateway;
+        private readonly Regex _lowerCase = new Regex($"\\b({string.Join('|', _animals)})(s?)\\b", RegexOptions.Compiled);
+        private readonly Regex _capitalCase = new Regex($"\\b({string.Join('|', _animals.Capitalise())})(s?)\\b", RegexOptions.Compiled);
+        private readonly Regex _upperCase = new Regex($"\\b({string.Join('|', _animals.ToUpper())})(S?)\\b", RegexOptions.Compiled);
+
+        public GetRandomQuestionableHorseFact(IAnimalFactGateway animalFactGateway)
+        {
+            _animalFactGateway = animalFactGateway;
+        }
+
+        public async Task<GetRandomQuestionableHorseFactResponse> Execute()
+        {
             var fact = await _animalFactGateway.GetAnimalFact();
 
             return new GetRandomQuestionableHorseFactResponse
             {
-                HorseFact = ReplaceAnimalsWithHorsesInFact(fact.Fact, animals)
+                HorseFact = ReplaceAnimalsWithHorsesInFact(fact.Fact)
             };
         }
 
-        private string ReplaceAnimalsWithHorsesInFact(string fact, string[] animals)
+        private string ReplaceAnimalsWithHorsesInFact(string fact)
         {
-            return animals.Aggregate(fact, (current, animal) =>
-                {
-                    current = Regex.Replace(current, @"\b" + animal + @"(s?)\b", "horse$1");
-                    current = Regex.Replace(current, @"\b" + animal.Substring(0, 1).ToUpper() + animal.Substring(1) + @"(s?)\b", "Horse$1");
-                    current = Regex.Replace(current, @"\b" + animal.ToUpper() + @"(S?)\b", "HORSE$1");
-
-                    return current;
-                });
+            var horseFact = fact;
+            horseFact = _lowerCase.Replace(horseFact, "horse$2");
+            horseFact = _capitalCase.Replace(horseFact, "Horse$2");
+            horseFact = _upperCase.Replace(horseFact, "HORSE$2");
+            return horseFact;
         }
     }
 }

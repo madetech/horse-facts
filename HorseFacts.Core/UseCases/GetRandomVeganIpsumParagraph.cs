@@ -24,6 +24,8 @@ namespace HorseFacts.Core.UseCases
         };
 
         private readonly IFoodIpsumGateway _foodIpsumGateway;
+        private readonly Regex _lowerCase = new Regex($"\\b({string.Join('|', _meats)})(s?)\\b", RegexOptions.Compiled);
+        private readonly Regex _capitalCase = new Regex($"\\b({string.Join('|', _meats.Capitalise())})(s?)\\b", RegexOptions.Compiled);
 
         public GetRandomVeganIpsumParagraph(IFoodIpsumGateway foodIpsumGateway)
         {
@@ -35,8 +37,8 @@ namespace HorseFacts.Core.UseCases
             var foodIpsum = await _foodIpsumGateway.GetFoodIpsum();
 
             var parapraph = foodIpsum.Paragraph;
-            parapraph = Regex.Replace(parapraph, $"\\b({string.Join('|', _meats)})(s?)\\b", "banana$2");
-            parapraph = Regex.Replace(parapraph, $"\\b({string.Join('|', _meats.Capitalise())})(s?)\\b", "Banana$2");
+            parapraph = _lowerCase.Replace(parapraph, "banana$2");
+            parapraph = _capitalCase.Replace(parapraph, "Banana$2");
 
             return new GetRandomVeganIpsumParagraphResponse
             {

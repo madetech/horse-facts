@@ -8,5 +8,10 @@ namespace HorseFacts.Core.Extensions
         {
             return strings.Select(s => s[0..1].ToUpper() + s[1..]).ToArray();
         }
+
+        public static string[] ToUpper(this string[] strings)
+        {
+            return strings.Select(s => s.ToUpper()).ToArray();
+        }
     }
 }
