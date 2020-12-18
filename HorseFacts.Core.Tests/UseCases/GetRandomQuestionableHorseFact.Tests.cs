@@ -4,6 +4,7 @@ using HorseFacts.Boundary.Responses;
 using HorseFacts.Core.Domain;
 using HorseFacts.Core.GatewayInterfaces;
 using HorseFacts.Core.UseCases;
+using HorseFacts.WordProviders.Gateways;
 using Xunit;
 
 namespace HorseFacts.Core.Tests.UseCases
@@ -16,7 +17,7 @@ namespace HorseFacts.Core.Tests.UseCases
         public GetRandomQuestionableHorseFactTests()
         {
             _animalFactCalled = false;
-            _subject = new GetRandomQuestionableHorseFact(this);
+            _subject = new GetRandomQuestionableHorseFact(this, new AnimalWordProvider());
         }
 
         [Fact]

@@ -15,5 +15,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HorseFacts.Core\HorseFacts.Core.csproj" />
+    <ProjectReference Include="..\HorseFacts.WordProviders\HorseFacts.WordProviders.csproj" />
   </ItemGroup>
 </Project>

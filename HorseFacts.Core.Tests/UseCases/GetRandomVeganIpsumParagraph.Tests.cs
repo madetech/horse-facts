@@ -2,6 +2,7 @@
 using HorseFacts.Core.Domain;
 using HorseFacts.Core.GatewayInterfaces;
 using HorseFacts.Core.UseCases;
+using HorseFacts.WordProviders.Gateways;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -14,7 +15,7 @@ namespace HorseFacts.Core.Tests.UseCases
 
         public GetRandomVeganIpsumParagraphTests()
         {
-            _subject = new GetRandomVeganIpsumParagraph(this);
+            _subject = new GetRandomVeganIpsumParagraph(this, new MeatWordProvider());
         }
 
         [Fact]
@@ -30,7 +31,7 @@ namespace HorseFacts.Core.Tests.UseCases
         [Fact]
         public async Task Sentence_meat_words_should_be_replaced_with_vegetable_words()
         {
-            _paragraph = "Ex dolor velit proident swine. Dolor fatback hamburger ut tail ribeye esse short loin cillum";
+            _paragraph = "Ex dolor velit proident swine. Dolor fatback hamburger ut tail ribeye esse pork loin cillum";
             var expected = "Ex dolor velit proident banana. Dolor banana banana ut banana banana esse banana cillum";
 
             var result = await _subject.Execute();

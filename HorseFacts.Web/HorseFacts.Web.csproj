@@ -10,5 +10,6 @@
   <ItemGroup>
     <ProjectReference Include="..\HorseFacts.CatFactsApiPlugin\HorseFacts.CatFactsApiPlugin.csproj" />
     <ProjectReference Include="..\HorseFacts.Core\HorseFacts.Core.csproj" />
+    <ProjectReference Include="..\HorseFacts.WordProviders\HorseFacts.WordProviders.csproj" />
   </ItemGroup>
 </Project>

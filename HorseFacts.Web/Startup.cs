@@ -21,11 +21,12 @@ namespace HorseFacts.Web
         {
             services
                 .ConfigureCoreServices()
-                .ConfigureCatFactsApiPluginServices(Configuration);
-            services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new OpenApiInfo() { Title = "HorseFactsAPI", Version = "v1" });
-            });
-            services.AddControllers();
+                .ConfigureCatFactsApiPluginServices(Configuration)
+                .ConfigureWordProviders()
+                .AddSwaggerGen(c => {
+                    c.SwaggerDoc("v1", new OpenApiInfo() { Title = "HorseFactsAPI", Version = "v1" });
+                })
+                .AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

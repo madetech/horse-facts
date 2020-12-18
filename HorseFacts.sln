@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorseFacts.Web.Tests", "Hor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HorseFacts.Boundary", "HorseFacts.Boundary\HorseFacts.Boundary.csproj", "{5216D666-1D22-42E0-859F-2AC5229AE41A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorseFacts.WordProviders", "HorseFacts.WordProviders\HorseFacts.WordProviders.csproj", "{D994A170-3C5F-46CA-9B95-74C96B1A0BBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{5216D666-1D22-42E0-859F-2AC5229AE41A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5216D666-1D22-42E0-859F-2AC5229AE41A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5216D666-1D22-42E0-859F-2AC5229AE41A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D994A170-3C5F-46CA-9B95-74C96B1A0BBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D994A170-3C5F-46CA-9B95-74C96B1A0BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D994A170-3C5F-46CA-9B95-74C96B1A0BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D994A170-3C5F-46CA-9B95-74C96B1A0BBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{3B64B68C-61B0-4601-BE97-A9460E1EBEA7} = {2FF9582C-6397-475B-ABD0-E6205F4BE202}
 		{02977AFF-519F-4311-9FA0-00EA05201C3B} = {8FC011C4-37CC-4925-B3A4-2E63F6646720}
 		{5216D666-1D22-42E0-859F-2AC5229AE41A} = {2FF9582C-6397-475B-ABD0-E6205F4BE202}
+		{D994A170-3C5F-46CA-9B95-74C96B1A0BBA} = {2FF9582C-6397-475B-ABD0-E6205F4BE202}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {56C9E7E2-1D4C-4D02-9114-DF91EA0836E7}

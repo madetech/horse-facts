@@ -10,26 +10,19 @@ namespace HorseFacts.Core.UseCases
 {
     public class GetRandomQuestionableHorseFact : IUseCase<GetRandomQuestionableHorseFactResponse>
     {
-        private static string[] _animals = new[]
-            {
-                "cat", "dog", "zebra", "giraffe", "lion", "tabby", "tabbie", "jaguar",
-                "squirrel", "lemur", "elephant", "gorilla", "kitten", "bird", "snake",
-                "monkey", "ape", "koala", "kangaroo", "penguin", "bear", "tiger", "goose",
-                "duck", "swan", "snail", "slug", "ant", "wasp", "bee", "hornet", "insect",
-                "spider", "scorpion", "millipede", "centipede", "owl", "hedgehog", "wolf",
-                "dragon", "rhino", "fox", "narwhal", "unicorn", "fish", "shark", "dolphin",
-                "octopus", "whale", "sloth", "cheetah", "ocelot", "tuna", "cod", "haddock",
-                "mackerel", "kipper", "leopard", "kitty", "kittie", "housecat", "escalator"
-            };
-
         private readonly IAnimalFactGateway _animalFactGateway;
-        private readonly Regex _lowerCase = new Regex($"\\b({string.Join('|', _animals)})(s?)\\b", RegexOptions.Compiled);
-        private readonly Regex _capitalCase = new Regex($"\\b({string.Join('|', _animals.Capitalise())})(s?)\\b", RegexOptions.Compiled);
-        private readonly Regex _upperCase = new Regex($"\\b({string.Join('|', _animals.ToUpper())})(S?)\\b", RegexOptions.Compiled);
+        private readonly Regex _lowerCase;
+        private readonly Regex _capitalCase;
+        private readonly Regex _upperCase;
 
-        public GetRandomQuestionableHorseFact(IAnimalFactGateway animalFactGateway)
+        public GetRandomQuestionableHorseFact(IAnimalFactGateway animalFactGateway, IProvideWords animalWords)
         {
             _animalFactGateway = animalFactGateway;
+            var animals = animalWords.GetWords();
+
+            _lowerCase = new Regex($"\\b({string.Join('|', animals)})(s?)\\b", RegexOptions.Compiled);
+            _capitalCase = new Regex($"\\b({string.Join('|', animals.Capitalise())})(s?)\\b", RegexOptions.Compiled);
+            _upperCase = new Regex($"\\b({string.Join('|', animals.ToUpper())})(S?)\\b", RegexOptions.Compiled);
         }
 
         public async Task<GetRandomQuestionableHorseFactResponse> Execute()

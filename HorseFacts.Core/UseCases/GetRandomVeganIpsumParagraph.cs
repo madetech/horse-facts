@@ -9,27 +9,17 @@ namespace HorseFacts.Core.UseCases
 {
     public class GetRandomVeganIpsumParagraph : IUseCase<GetRandomVeganIpsumParagraphResponse>
     {
-        private static readonly string[] _meats = new string[]
-        {
-            "beef", "chicken", "pork", "bacon", "chuck", "short loin", "sirloin",
-            "shank", "flank", "sausage", "pork belly", "shoulder", "cow", "pig",
-            "ground round", "hamburger", "meatball", "tenderloin", "strip steak",
-            "t-bone", "ribeye", "shankle", "tongue", "tail", "pork chop", "pastrami",
-            "corned beef", "jerky", "ham", "fatback", "ham hock", "pancetta", "pork loin",
-            "short ribs", "spare ribs", "beef ribs", "drumstick", "tri-tip", "ball tip",
-            "venison", "turkey","biltong", "rump", "jowl", "salami", "bresaola", "meatloaf",
-            "brisket", "boudin", "andouille", "capicola", "swine", "kielbasa", "frankfurter",
-            "prosciutto", "filet mignon", "leberkas", "turducken", "doner", "kevin",
-            "landjaeger", "porchetta", "alcatra", "picanha", "cupim", "burgdoggen", "buffalo"
-        };
-
         private readonly IFoodIpsumGateway _foodIpsumGateway;
-        private readonly Regex _lowerCase = new Regex($"\\b({string.Join('|', _meats)})(s?)\\b", RegexOptions.Compiled);
-        private readonly Regex _capitalCase = new Regex($"\\b({string.Join('|', _meats.Capitalise())})(s?)\\b", RegexOptions.Compiled);
+        private readonly Regex _lowerCase;
+        private readonly Regex _capitalCase;
 
-        public GetRandomVeganIpsumParagraph(IFoodIpsumGateway foodIpsumGateway)
+        public GetRandomVeganIpsumParagraph(IFoodIpsumGateway foodIpsumGateway, IProvideWords meatWords)
         {
             _foodIpsumGateway = foodIpsumGateway;
+            var meats = meatWords.GetWords();
+
+            _lowerCase = new Regex($"\\b({string.Join('|', meats)})(s?)\\b", RegexOptions.Compiled);
+            _capitalCase = new Regex($"\\b({string.Join('|', meats.Capitalise())})(s?)\\b", RegexOptions.Compiled);
         }
 
         public async Task<GetRandomVeganIpsumParagraphResponse> Execute()
