@@ -11,18 +11,12 @@ namespace HorseFacts.Core.UseCases
     public class GetRandomQuestionableHorseFact : IUseCase<GetRandomQuestionableHorseFactResponse>
     {
         private readonly IAnimalFactGateway _animalFactGateway;
-        private readonly Regex _lowerCase;
-        private readonly Regex _capitalCase;
-        private readonly Regex _upperCase;
+        private readonly IProvideWords _animalWords;
 
         public GetRandomQuestionableHorseFact(IAnimalFactGateway animalFactGateway, IProvideWords animalWords)
         {
             _animalFactGateway = animalFactGateway;
-            var animals = animalWords.GetWords();
-
-            _lowerCase = new Regex($"\\b({string.Join('|', animals)})(s?)\\b", RegexOptions.Compiled);
-            _capitalCase = new Regex($"\\b({string.Join('|', animals.Capitalise())})(s?)\\b", RegexOptions.Compiled);
-            _upperCase = new Regex($"\\b({string.Join('|', animals.ToUpper())})(S?)\\b", RegexOptions.Compiled);
+            _animalWords = animalWords;
         }
 
         public async Task<GetRandomQuestionableHorseFactResponse> Execute()
@@ -37,10 +31,12 @@ namespace HorseFacts.Core.UseCases
 
         private string ReplaceAnimalsWithHorsesInFact(string fact)
         {
+            var animals = _animalWords.GetWords();
+
             var horseFact = fact;
-            horseFact = _lowerCase.Replace(horseFact, "horse$2");
-            horseFact = _capitalCase.Replace(horseFact, "Horse$2");
-            horseFact = _upperCase.Replace(horseFact, "HORSE$2");
+            horseFact = Regex.Replace(horseFact, $"\\b({string.Join('|', animals)})(s?)\\b", "horse$2");
+            horseFact = Regex.Replace(horseFact, $"\\b({string.Join('|', animals.Capitalise())})(s?)\\b", "Horse$2");
+            horseFact = Regex.Replace(horseFact, $"\\b({string.Join('|', animals.ToUpper())})(S?)\\b", "HORSE$2");
             return horseFact;
         }
     }

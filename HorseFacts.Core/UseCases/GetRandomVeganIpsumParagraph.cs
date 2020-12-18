@@ -10,25 +10,22 @@ namespace HorseFacts.Core.UseCases
     public class GetRandomVeganIpsumParagraph : IUseCase<GetRandomVeganIpsumParagraphResponse>
     {
         private readonly IFoodIpsumGateway _foodIpsumGateway;
-        private readonly Regex _lowerCase;
-        private readonly Regex _capitalCase;
+        private readonly IProvideWords _meatWords;
 
         public GetRandomVeganIpsumParagraph(IFoodIpsumGateway foodIpsumGateway, IProvideWords meatWords)
         {
             _foodIpsumGateway = foodIpsumGateway;
-            var meats = meatWords.GetWords();
-
-            _lowerCase = new Regex($"\\b({string.Join('|', meats)})(s?)\\b", RegexOptions.Compiled);
-            _capitalCase = new Regex($"\\b({string.Join('|', meats.Capitalise())})(s?)\\b", RegexOptions.Compiled);
+            _meatWords = meatWords;
         }
 
         public async Task<GetRandomVeganIpsumParagraphResponse> Execute()
         {
             var foodIpsum = await _foodIpsumGateway.GetFoodIpsum();
+            var meats = _meatWords.GetWords();
 
             var parapraph = foodIpsum.Paragraph;
-            parapraph = _lowerCase.Replace(parapraph, "banana$2");
-            parapraph = _capitalCase.Replace(parapraph, "Banana$2");
+            parapraph = Regex.Replace(parapraph, $"\\b({string.Join('|', meats)})(s?)\\b", "banana$2");
+            parapraph = Regex.Replace(parapraph, $"\\b({string.Join('|', meats.Capitalise())})(s?)\\b", "Banana$2");
 
             return new GetRandomVeganIpsumParagraphResponse
             {
