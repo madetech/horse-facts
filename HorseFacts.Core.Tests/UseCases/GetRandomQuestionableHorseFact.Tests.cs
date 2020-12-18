@@ -30,7 +30,7 @@ namespace HorseFacts.Core.Tests.UseCases
             var fact = subject.Execute();
 
             AssertHorseFactToBe(
-                "Lil' Bunny Sue Roux is a horse who was born with no front legs, and walks upright like a kangaroo."
+                "Lil' Bunny Sue Roux is a horse who was born with no front legs, and walks upright like a horse."
                 , fact
             );
         }
