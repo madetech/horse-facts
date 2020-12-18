@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Threading.Tasks;
 using HorseFacts.Core.Domain;
 using HorseFacts.Core.GatewayInterfaces;
 using Newtonsoft.Json.Linq;
@@ -14,9 +15,9 @@ namespace HorseFacts.CatFactsApiPlugin.Gateways
             _httpClient = httpClient;
         }
         
-        public AnimalFact GetAnimalFact()
+        public async Task<AnimalFact> GetAnimalFact()
         {
-            var body = _httpClient.GetStringAsync("/facts/random").Result;
+            var body = await _httpClient.GetStringAsync("/facts/random");
             var text = JToken.Parse(body).Value<string>("text");
             return new AnimalFact
             {

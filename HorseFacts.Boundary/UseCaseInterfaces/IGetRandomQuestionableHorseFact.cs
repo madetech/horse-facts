@@ -1,9 +1,10 @@
 ﻿using HorseFacts.Boundary.Responses;
+using System.Threading.Tasks;
 
 namespace HorseFacts.Boundary.UseCaseInterfaces
 {
     public interface IGetRandomQuestionableHorseFact
     {
-        GetRandomQuestionableHorseFactResponse Execute();
+        Task<GetRandomQuestionableHorseFactResponse> Execute();
     }
 }

@@ -1,9 +1,10 @@
 using HorseFacts.Core.Domain;
+using System.Threading.Tasks;
 
 namespace HorseFacts.Core.GatewayInterfaces
 {
     public interface IAnimalFactGateway
     {
-        AnimalFact GetAnimalFact();
+        Task<AnimalFact> GetAnimalFact();
     }
 }

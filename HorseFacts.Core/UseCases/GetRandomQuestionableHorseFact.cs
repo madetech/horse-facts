@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net.WebSockets;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using HorseFacts.Boundary.Responses;
 using HorseFacts.Boundary.UseCaseInterfaces;
 using HorseFacts.Core.GatewayInterfaces;
@@ -17,7 +16,7 @@ namespace HorseFacts.Core.UseCases
             _animalFactGateway = animalFactGateway;
         }
 
-        public GetRandomQuestionableHorseFactResponse Execute()
+        public async Task<GetRandomQuestionableHorseFactResponse> Execute()
         {
             var animals = new[]
             {
@@ -31,7 +30,7 @@ namespace HorseFacts.Core.UseCases
                 "mackerel", "kipper", "leopard", "kitty", "kittie", "housecat", "escalator"
             };
 
-            var fact = _animalFactGateway.GetAnimalFact();
+            var fact = await _animalFactGateway.GetAnimalFact();
 
             return new GetRandomQuestionableHorseFactResponse
             {

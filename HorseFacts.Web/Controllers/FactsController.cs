@@ -1,6 +1,6 @@
-﻿using HorseFacts.Boundary.Responses;
-using HorseFacts.Boundary.UseCaseInterfaces;
+﻿using HorseFacts.Boundary.UseCaseInterfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace HorseFacts.Web.Controllers
 {
@@ -17,9 +17,10 @@ namespace HorseFacts.Web.Controllers
 
         // GET
         [HttpGet("random")]
-        public IActionResult Random()
+        public async Task<IActionResult> Random()
         {
-            return Ok(_getRandomQuestionableHorseFact.Execute());
+            var horseFact = await _getRandomQuestionableHorseFact.Execute();
+            return Ok(horseFact);
         }
     }
 }
