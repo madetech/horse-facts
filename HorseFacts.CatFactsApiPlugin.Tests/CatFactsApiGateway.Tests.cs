@@ -1,44 +1,37 @@
 using System;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using FluentAssertions;
 using HorseFacts.CatFactsApiPlugin.Gateways;
 using HorseFacts.Core.Domain;
-using NUnit.Framework;
-using WireMock.Logging;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
 using WireMock.Settings;
+using Xunit;
 
 namespace Tests
 {
-    public class CatFactsApiGatewayTests
+    public class CatFactsApiGatewayTests : IDisposable
     {
         private FluentMockServer _server;
 
-        [SetUp]
-        public void Setup()
+        public CatFactsApiGatewayTests()
         {
             _server = FluentMockServer.Start(new FluentMockServerSettings());
         }
 
-        [TearDown]
-        public void Teardown()
-        {
-            _server.Stop();
-        }
-
-        [Test]
-        [TestCase("Cats eat hay")]
-        [TestCase("Cats make a quacking noise when threatened")]
-        public void GetAnimalFact_ReturnsAnimalFact(string factText)
+        [Theory]
+        [InlineData("Cats eat hay")]
+        [InlineData("Cats make a quacking noise when threatened")]
+        public async Task GetAnimalFact_ReturnsAnimalFact(string factText)
         {            
             StubCatFactsRandomEndpoint(factText);
 
             var httpClient = new HttpClient() { BaseAddress = new Uri(_server.Urls.First()) };
             var catFactApi = new CatFactsApiGateway(httpClient);
-            var animalFact = catFactApi.GetAnimalFact();
+            var animalFact = await catFactApi.GetAnimalFact();
             
             animalFact.Should().BeEquivalentTo(new AnimalFact
             {
@@ -58,6 +51,11 @@ namespace Tests
                     .WithStatusCode(200)
                     .WithHeader("Content-Type", "application/json")
                     .WithBody($"{{\"_id\":\"58e00be30aac31001185edfe\",\"user\":\"58e007480aac31001185ecef\",\"text\":\"{responseFactText}\",\"__v\":0,\"updatedAt\":\"2019-03-02T21:20:35.601Z\",\"createdAt\":\"2018-02-26T21:20:04.469Z\",\"deleted\":false,\"type\":\"cat\",\"source\":\"user\",\"used\":true}}"));
+        }
+
+        public void Dispose()
+        {
+            _server.Stop();
         }
     }
 }

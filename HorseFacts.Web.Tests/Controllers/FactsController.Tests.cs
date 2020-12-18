@@ -4,7 +4,8 @@ using HorseFacts.Boundary.UseCaseInterfaces;
 using HorseFacts.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using NUnit.Framework;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace HorseFacts.Web.Tests.Controllers
 {
@@ -12,16 +13,15 @@ namespace HorseFacts.Web.Tests.Controllers
     {
         private Mock<IGetRandomQuestionableHorseFact> _getRandomQuestionableHorseFact;
 
-        [SetUp]
-        public void Setup()
+        public FactsControllerTests()
         {
             _getRandomQuestionableHorseFact = new Mock<IGetRandomQuestionableHorseFact>();
         }
 
-        [Test]
-        [TestCase("Approximately 80% of orange horses are male")]
-        [TestCase("The horse is one of the most endangered animals in the world")]
-        public void Random_ReturnsAHorseFact(string expectedFact)
+        [Theory]
+        [InlineData("Approximately 80% of orange horses are male")]
+        [InlineData("The horse is one of the most endangered animals in the world")]
+        public async Task Random_ReturnsAHorseFact(string expectedFact)
         {
             var stubResponse = new GetRandomQuestionableHorseFactResponse
             {
@@ -30,10 +30,10 @@ namespace HorseFacts.Web.Tests.Controllers
 
             _getRandomQuestionableHorseFact
                 .Setup(use => use.Execute())
-                .Returns(stubResponse);
+                .Returns(Task.FromResult(stubResponse));
 
             var controller = new FactsController(_getRandomQuestionableHorseFact.Object);
-            var response = controller.Random();
+            var response = await controller.Random();
 
             response.Should().BeEquivalentTo(new OkObjectResult(stubResponse));
         }

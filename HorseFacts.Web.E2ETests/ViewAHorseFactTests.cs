@@ -9,21 +9,20 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
-using NUnit.Framework;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
 using WireMock.Settings;
+using Xunit;
 
 namespace HorseFacts.Web.E2ETests
 {
-    public class ViewAHorseFactTests
+    public class ViewAHorseFactTests : IDisposable
     {
-        private HttpClient _client;
-        private FluentMockServer _server;
+        private readonly HttpClient _client;
+        private readonly FluentMockServer _server;
 
-        [SetUp]
-        public void Setup()
+        public ViewAHorseFactTests()
         {
             _server = FluentMockServer.Start(new FluentMockServerSettings());
             _client = new WebApplicationFactory<Startup>().WithWebHostBuilder(builder =>
@@ -40,7 +39,7 @@ namespace HorseFacts.Web.E2ETests
 
         // TODO: Make errors not involve debugging and inspecting HTML to get an awkward stack trace
         // TODO: Reconsider E2E vs subcutaneous acceptance testing split
-        [Test]
+        [Fact]
         public async Task UserCanViewAHorseFact()
         {
             var expectedJson = JToken.Parse("{\"horseFact\": \"Horses use their whiskers to detect if they can fit through a space.\"}");
@@ -62,6 +61,11 @@ namespace HorseFacts.Web.E2ETests
 
             result.StatusCode.Should().Be(200);
             JToken.DeepEquals(expectedJson, json).Should().BeTrue();
+        }
+
+        public void Dispose()
+        {
+            _server.Stop();
         }
     }
 }
