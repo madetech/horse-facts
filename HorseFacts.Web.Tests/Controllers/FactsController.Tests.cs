@@ -11,11 +11,11 @@ namespace HorseFacts.Web.Tests.Controllers
 {
     public class FactsControllerTests
     {
-        private Mock<IGetRandomQuestionableHorseFact> _getRandomQuestionableHorseFact;
+        private Mock<IUseCase<GetRandomQuestionableHorseFactResponse>> _getRandomQuestionableHorseFact;
 
         public FactsControllerTests()
         {
-            _getRandomQuestionableHorseFact = new Mock<IGetRandomQuestionableHorseFact>();
+            _getRandomQuestionableHorseFact = new Mock<IUseCase<GetRandomQuestionableHorseFactResponse>>();
         }
 
         [Theory]

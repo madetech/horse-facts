@@ -1,4 +1,5 @@
-﻿using HorseFacts.Boundary.UseCaseInterfaces;
+﻿using HorseFacts.Boundary.Responses;
+using HorseFacts.Boundary.UseCaseInterfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -8,9 +9,9 @@ namespace HorseFacts.Web.Controllers
     [Route("api/[controller]")]
     public class FactsController : Controller
     {
-        private IGetRandomQuestionableHorseFact _getRandomQuestionableHorseFact;
+        private IUseCase<GetRandomQuestionableHorseFactResponse> _getRandomQuestionableHorseFact;
 
-        public FactsController(IGetRandomQuestionableHorseFact getRandomQuestionableHorseFact)
+        public FactsController(IUseCase<GetRandomQuestionableHorseFactResponse> getRandomQuestionableHorseFact)
         {
             _getRandomQuestionableHorseFact = getRandomQuestionableHorseFact;
         }

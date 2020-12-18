@@ -1,6 +1,4 @@
-﻿using HorseFacts.CatFactsApiPlugin;
-using HorseFacts.Core;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

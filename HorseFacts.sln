@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8FC011C4-37CC-4925-B3A4-2E63F6646720}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorseFacts.Web.E2ETests", "HorseFacts.Web.E2ETests\HorseFacts.Web.E2ETests.csproj", "{4346F552-A3E0-475B-9283-09407BF1849D}"
@@ -18,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorseFacts.CatFactsApiPlugi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorseFacts.Web.Tests", "HorseFacts.Web.Tests\HorseFacts.Web.Tests.csproj", "{02977AFF-519F-4311-9FA0-00EA05201C3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorseFacts.Boundary", "HorseFacts.Boundary\HorseFacts.Boundary.csproj", "{5216D666-1D22-42E0-859F-2AC5229AE41A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HorseFacts.Boundary", "HorseFacts.Boundary\HorseFacts.Boundary.csproj", "{5216D666-1D22-42E0-859F-2AC5229AE41A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +62,9 @@ Global
 		{5216D666-1D22-42E0-859F-2AC5229AE41A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5216D666-1D22-42E0-859F-2AC5229AE41A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4346F552-A3E0-475B-9283-09407BF1849D} = {8FC011C4-37CC-4925-B3A4-2E63F6646720}
 		{D649D81D-B0E5-4199-868E-FC7B525F21AD} = {2FF9582C-6397-475B-ABD0-E6205F4BE202}
@@ -68,5 +74,8 @@ Global
 		{3B64B68C-61B0-4601-BE97-A9460E1EBEA7} = {2FF9582C-6397-475B-ABD0-E6205F4BE202}
 		{02977AFF-519F-4311-9FA0-00EA05201C3B} = {8FC011C4-37CC-4925-B3A4-2E63F6646720}
 		{5216D666-1D22-42E0-859F-2AC5229AE41A} = {2FF9582C-6397-475B-ABD0-E6205F4BE202}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56C9E7E2-1D4C-4D02-9114-DF91EA0836E7}
 	EndGlobalSection
 EndGlobal

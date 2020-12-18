@@ -7,7 +7,7 @@ using HorseFacts.Core.GatewayInterfaces;
 
 namespace HorseFacts.Core.UseCases
 {
-    public class GetRandomQuestionableHorseFact : IGetRandomQuestionableHorseFact
+    public class GetRandomQuestionableHorseFact : IUseCase<GetRandomQuestionableHorseFactResponse>
     {
         private readonly IAnimalFactGateway _animalFactGateway;
 
