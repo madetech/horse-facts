@@ -1,39 +1,27 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
+﻿using System.Net.Http;
 using HorseFacts.Core.Domain;
 using HorseFacts.Core.GatewayInterfaces;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace HorseFacts.CatFactsApiPlugin.Gateways
 {
     public class CatFactsApiGateway : IAnimalFactGateway
     {
-        private string _hostname;
+        private readonly HttpClient _httpClient;
 
-        public CatFactsApiGateway(string hostname)
+        public CatFactsApiGateway(HttpClient httpClient)
         {
-            _hostname = hostname;
+            _httpClient = httpClient;
         }
         
         public AnimalFact GetAnimalFact()
         {
-            using (var http = new WebClient())
+            var body = _httpClient.GetStringAsync("/facts/random").Result;
+            var text = JToken.Parse(body).Value<string>("text");
+            return new AnimalFact
             {
-                var body = http.DownloadString($"{_hostname}/facts/random");
-                var thing = JsonConvert.DeserializeObject<RandomFactResponse>(body);
-
-                return new AnimalFact
-                {
-                    Fact = thing.Text
-                };
+                Fact = text
             };
-        }
-
-        private class RandomFactResponse
-        {
-            public string Text { get; set; }
         }
     }
 }

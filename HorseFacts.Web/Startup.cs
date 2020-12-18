@@ -22,7 +22,7 @@ namespace HorseFacts.Web
         {
             services
                 .ConfigureCoreServices()
-                .ConfigureCatFactsApiPluginServices()
+                .ConfigureCatFactsApiPluginServices(Configuration)
                 .AddMvc();
         }
 
